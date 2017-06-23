@@ -1,49 +1,49 @@
 {
-    "name": "angular-fluid-grid",
-    "version": "0.0.0",
-    "description": "This repository contains the source for the Angular Fluid Grid Package, a responsive, light weight fluid data grid for angular 2 and above.",
-    "homepage": "https://github.com/infusion-code/angular-fluid-grid/wiki",
-    "bugs": {
-        "url": "https://github.com/infusion-code/angular-fluid-grid/issues",
-        "email": "tschueler@infusion.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/infusion-code/angular-fluid-grid"
-    },
-    "main": "./dist/index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "prepublish": "npm run build",
-        "watch": ".\\node_modules\\.bin\\ngc -p tsconfig-aot.json -w ",
-        "build": ".\\node_modules\\.bin\\ngc -p tsconfig-aot.json"
-    },
-    "keywords": [
-        "ng2",
-        "angular",
-        "grid",
-        "responsive",
-        "datatable"
-    ],
-    "typings": "./dist/index.d.ts",
-    "author": "Jakub Gwozdz, Thor Schueler",
-    "license": "MIT",
-    "dependencies": {
-        "@angular/common": ">=2.4.9",
-        "@angular/compiler": ">=2.4.9",
-        "@angular/core": ">=2.4.9",
-        "font-awesome": "^4.6.3",
-        "rxjs": "^5.2.0",
-        "zone.js": "^0.8.2"
-    },
-    "devDependencies": {
-        "@types/node": "^7.0.5",
-        "@angular/animations": ">=2.4.9",
-        "@angular/platform-browser": ">=2.4.9",
-        "@angular/platform-server": ">=2.4.9",
-        "@angular/compiler-cli": ">=2.4.9",
-        "codelyzer": ">=3.0.1",
-        "tslint": ">=5.4.2",
-        "typescript": "^2.3.2"
-    }
+  "name": "angular-fluid-grid",
+  "version": "0.0.1-0",
+  "description": "This repository contains the source for the Angular Fluid Grid Package, a responsive, light weight fluid data grid for angular 2 and above.",
+  "homepage": "https://github.com/infusion-code/angular-fluid-grid/wiki",
+  "bugs": {
+    "url": "https://github.com/infusion-code/angular-fluid-grid/issues",
+    "email": "tschueler@infusion.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/infusion-code/angular-fluid-grid"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm run build",
+    "watch": ".\\node_modules\\.bin\\ngc -p tsconfig-aot.json -w ",
+    "build": ".\\node_modules\\.bin\\ngc -p tsconfig-aot.json"
+  },
+  "keywords": [
+    "ng2",
+    "angular",
+    "grid",
+    "responsive",
+    "datatable"
+  ],
+  "typings": "./dist/index.d.ts",
+  "author": "Jakub Gwozdz, Thor Schueler",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/common": ">=2.4.9",
+    "@angular/compiler": ">=2.4.9",
+    "@angular/core": ">=2.4.9",
+    "font-awesome": "^4.6.3",
+    "rxjs": "^5.2.0",
+    "zone.js": "^0.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.5",
+    "@angular/animations": ">=2.4.9",
+    "@angular/platform-browser": ">=2.4.9",
+    "@angular/platform-server": ">=2.4.9",
+    "@angular/compiler-cli": ">=2.4.9",
+    "codelyzer": ">=3.0.1",
+    "tslint": ">=5.4.2",
+    "typescript": "^2.3.2"
+  }
 }
