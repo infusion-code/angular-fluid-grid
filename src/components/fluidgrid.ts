@@ -9,7 +9,7 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
 @Component({
     selector: 'fuild-grid',
     templateUrl: './fluidgrid.html',
-  //  styleUrls: [ './fluidgrid.css'   ]
+    styleUrls: [ './fluidgrid.css'   ]
 })
 export class FluidGridComponent   {
 
