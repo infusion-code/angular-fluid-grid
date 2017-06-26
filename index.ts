@@ -1,6 +1,7 @@
 ﻿import { NgModule, ModuleWithProviders, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
 /** 
  * import module interfaces
  */
@@ -9,23 +10,30 @@ import { CommonModule } from '@angular/common';
 /** 
  * import module models
  */
-//import { xxx } from './src/models/xxx';
+import { IFluidGridConfig } from './src/interfaces/IFluidGridConfig';
 
 /**
  * import module components
  */
-//import { xxx } from './src/components/xxx';
+import { FluidGridComponent } from './src/components/FluidGrid';
 
 /**
  * import module services
  */
 //import { xxx } from './src/services/xxx';
 
+
+/**
+ * import module pipes
+ */
+import { SlicePipe } from './src/pipes/slice';
+
 /**
  * Create export barrel.
  */
 export {
-    //xxx
+    IFluidGridConfig,
+    FluidGridComponent
 }
 
 
@@ -37,10 +45,14 @@ export {
  */
 @NgModule({
     declarations: [
+        FluidGridComponent,
+        SlicePipe
     ],
     imports: [CommonModule],
     exports: [
-        CommonModule
+        CommonModule,
+        FluidGridComponent,
+        SlicePipe
     ]
     ///
     /// do not add providers here. Since this is a module, providers are created in the forRoot call. 
