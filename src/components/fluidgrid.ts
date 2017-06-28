@@ -56,10 +56,10 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
         .table-row-group {    display: table-row-group; }
         .table-row-group .generic {   text-align: center; }
         .table-row-group.generic {   text-align: center; }
-        .cell {   padding: 5px;   display: table-cell;   font-weight: 400;   border-bottom: 1px solid #727982; }
-        .cell:hover > .cell {   cursor: default;}
-        .active {   background-color: rgba(255, 255, 255, 0.2); }
-        .link {   cursor: pointer !Important; }  
+        :host /deep/  .cell {   padding: 5px;   display: table-cell;   font-weight: 400;   border-bottom: 1px solid #727982; }
+        :host /deep/ .cell:hover > .cell {   cursor: default;}
+        :host /deep/ .active {   background-color: rgba(255, 255, 255, 0.2); }
+        :host /deep/ .link {   cursor: pointer !Important; }
         `]
 })
 export class FluidGridComponent   {
