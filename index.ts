@@ -1,15 +1,10 @@
 ﻿import { NgModule, ModuleWithProviders, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { NgxPaginationModule } from 'ngx-pagination';
+
 
 /** 
  * import module interfaces
- */
-//import { xxx } from './src/interfaces/xxx';
-
-/** 
- * import module models
  */
 import { IFluidGridConfig } from './src/interfaces/IFluidGridConfig';
 
@@ -18,15 +13,6 @@ import { IFluidGridConfig } from './src/interfaces/IFluidGridConfig';
  */
 import { FluidGridComponent } from './src/components/FluidGrid';
 
-/**
- * import module services
- */
-//import { xxx } from './src/services/xxx';
-
-
-/**
- * import module pipes
- */
 
 /**
  * Create export barrel.
