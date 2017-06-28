@@ -16,7 +16,9 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
                     <div *ngIf="CheckIfRender(i)" class="cell"  >{{h}}</div>           
                 </ng-container>               
             </div>
-            <ng-container *ngFor="let r of (_config.Rows | paginate: { itemsPerPage: 10, currentPage: p }); let i=index">
+            <ng-container 
+                *ngFor="let r of (_config.Rows | paginate: { itemsPerPage: ItemsPerPage, currentPage: p, id : PaginationId });
+                let i=index">
                     <ng-container *ngIf="templateRef">
                         <div class="table-row-group " 
                             [ngClass]='{active: _activeIndex == i, link: _config.IsClickable}' 
@@ -40,7 +42,9 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
                     </ng-container>
             </ng-container>              
         </div>
-        <pagination-controls    
+    
+        <pagination-controls
+            id='{{PaginationId}}'
             autoHide="true"
             (pageChange)="p = $event">        
         </pagination-controls>
@@ -182,8 +186,18 @@ export class FluidGridComponent   {
      * @memberof FluidGridComponent
      */
     private FireClick(item: any) {
-
         this.OnClick.emit(item);
+    }
+
+    private get PaginationId() : string {
+        return 'pagination' +  this._config.GridId;
+    }
+
+    private get ItemsPerPage(): number {
+        if (!this._config.ItemsPerPage) {
+            return 10;
+        }
+        return this._config.ItemsPerPage;
     }
 
     /**
@@ -206,7 +220,7 @@ export class FluidGridComponent   {
             reduceToColumn: number
             visibleColumnIndexes: Array<number>
         } {
-        return { 
+        return {
             row : row,
             reduceToColumn : this.ReduceToColumn,
             visibleColumnIndexes : this._config.VisibleColumnIndexes

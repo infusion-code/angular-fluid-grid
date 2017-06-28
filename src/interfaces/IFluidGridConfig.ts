@@ -7,6 +7,13 @@ import { EventEmitter } from '@angular/core';
 export interface IFluidGridConfig
 {
     /**
+     * Id of the Grid to configure. 
+     * @type {string}
+     * @memberof IFluidGridConfig
+     */
+    GridId?: string;
+
+    /**
      * An array of string containing the header labels for the table. 
      * @type {Array<string>}
      * @memberof IFluidGridConfig
@@ -41,10 +48,18 @@ export interface IFluidGridConfig
      */
     VisibleColumnIndexes?:  Array<number>;
     
-     /**
+    /**
      * True to make rows clickable.
      * @type {boolean}
      * @memberof IFluidGridConfig
      */   
     IsClickable?: boolean;
+
+    /**
+     * The number of items per page to display. If not specified, teh
+     * default value is 10.
+     * @type {number}
+     * @memberof IFluidGridConfig
+     */
+    ItemsPerPage?: number;
 }
