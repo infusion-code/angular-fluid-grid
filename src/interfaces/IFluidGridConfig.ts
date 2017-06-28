@@ -5,5 +5,6 @@ export interface IFluidGridConfig
     Rows: Array<any>;
     ReduceTebleFromWidth?: number;
     ReducedSize?: number;
+    VisibleColumnIndexes?:  Array<number>;
     IsClicable?: boolean;
 }

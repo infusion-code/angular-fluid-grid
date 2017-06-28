@@ -7,9 +7,60 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
  * @class
  */
 @Component({
-    selector: 'fuild-grid',
-    templateUrl: './fluidgrid.html',
-    styleUrls: [ './fluidgrid.css'   ]
+    selector: 'fluild-grid',
+    template: `
+      <div class="table-container" [ngStyle]="{'position': false ? 'absolute' : 'static'}">
+        <div class="table" (mouseout)="FireHighlight(null)" >
+            <div class="table-row no-margin header-row"  >       
+                <ng-container *ngFor="let h of (_config.Headers | slice:0:ReduceToColumn); let i=index">
+                    <div *ngIf="checkIfRender(i)" class="cell"  >{{h}}</div>           
+                </ng-container>               
+            </div>
+            <ng-container *ngFor="let r of (_config.Rows | paginate: { itemsPerPage: 10, currentPage: p }); let i=index">
+                    <ng-container *ngIf="templateRef">
+                        <div class="table-row-group " 
+                            [ngClass]='{active: _activeIndex == i, link: _config.IsClicable}' 
+                            (mouseover)="FireHighlight(r, i)"
+                            (click)="FireClick(r)">
+                            <template [ngTemplateOutlet]="templateRef"  [ngOutletContext]="{ item: GenerateRowTemplateModel(r) }" ></template>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="!templateRef">
+                        <div class="table-row-group generic" 
+                            [ngClass]='{active: _activeIndex == i, link: _config.IsClicable}'  
+                            (mouseover)="FireHighlight(r, i)"
+                            (click)="FireClick(r)">
+                            <div class="table-row no-margin">
+
+                                <ng-container *ngFor="let c of  ( r  |  slice:0:ReduceToColumn ); let i=index">
+                                    <div *ngIf="checkIfRender(i)" class="cell"  >{{c}}</div>           
+                                </ng-container>    
+                            
+                            </div>
+                        </div>
+                    </ng-container>
+            </ng-container>              
+        </div>
+    
+        <pagination-controls    
+            autoHide="true"
+            (pageChange)="p = $event">        
+        </pagination-controls>
+    </div>   
+    `,
+    styles: [ `
+        .table-container {   position: absolute;   max-height: 100%;   overflow: auto;   width: 100%;   padding: 15px; }
+        .table {   display: table; }
+        .table-row.no-margin {    padding: 3px 6px;   font-size: 1em;   display: table-row; }
+        .header-row > .cell {   padding: 5px;   display: table-cell;   font-weight: 400;   color: #727982;   text-align: center; }
+        .table-row-group {    display: table-row-group; }
+        .table-row-group .generic {   text-align: center; }
+        .table-row-group.generic {   text-align: center; }
+        .cell {   padding: 5px;   display: table-cell;   font-weight: 400;   border-bottom: 1px solid #727982; }
+        .cell:hover > .cell {   cursor: default;}
+        .active {   background-color: rgba(255, 255, 255, 0.2); }
+        .link {   cursor: pointer !Important; }  
+        `]
 })
 export class FluidGridComponent   {
 
@@ -20,8 +71,8 @@ export class FluidGridComponent   {
     private templateRef: TemplateRef<any>;
 
     private get ReduceToColumn(): number {
-        return this._config.ReduceTebleFromWidth && this._elementRef.nativeElement && 
-            this._elementRef.nativeElement.firstChild.offsetWidth < this._config.ReduceTebleFromWidth
+        return this._config.ReduceTebleFromWidth && this._elementRef.nativeElement && this._elementRef.nativeElement.children.length &&
+            this._elementRef.nativeElement.children[0].offsetWidth < this._config.ReduceTebleFromWidth
             ? this._config.ReducedSize : 10000;
     }
 
@@ -39,7 +90,16 @@ export class FluidGridComponent   {
     @Output()
     public OnClick: EventEmitter<any> = new EventEmitter<any>();
 
-    constructor(private _elementRef: ElementRef) {  }
+    constructor(private _elementRef: ElementRef)
+    {
+
+    }
+
+
+    private checkIfRender(index: number): boolean {
+        return !this._config.VisibleColumnIndexes ||
+            this._config.VisibleColumnIndexes.indexOf(index) > -1
+    }
 
     private FireHighlight(item: any, index: number) {
         if (!item)
@@ -55,5 +115,19 @@ export class FluidGridComponent   {
 
         this.OnClick.emit(item);
     }
+
+    private GenerateRowTemplateModel(row): 
+        {   
+            row: any, 
+            reduceToColumn: number
+            visibleColumnIndexes: Array<number>
+        } {
+        return { 
+            row : row,
+            reduceToColumn : this.ReduceToColumn,
+            visibleColumnIndexes : this._config.VisibleColumnIndexes
+     };
+    }
+
 
 }

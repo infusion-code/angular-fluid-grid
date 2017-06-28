@@ -1,6 +1,7 @@
 ﻿import { NgModule, ModuleWithProviders, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { NgxPaginationModule } from 'ngx-pagination';
 
 /** 
  * import module interfaces
@@ -26,7 +27,6 @@ import { FluidGridComponent } from './src/components/FluidGrid';
 /**
  * import module pipes
  */
-import { SlicePipe } from './src/pipes/slice';
 
 /**
  * Create export barrel.
@@ -45,14 +45,14 @@ export {
  */
 @NgModule({
     declarations: [
-        FluidGridComponent,
-        SlicePipe
+        FluidGridComponent
     ],
-    imports: [CommonModule],
+    imports: [
+        CommonModule,
+        NgxPaginationModule],
     exports: [
         CommonModule,
-        FluidGridComponent,
-        SlicePipe
+        FluidGridComponent
     ]
     ///
     /// do not add providers here. Since this is a module, providers are created in the forRoot call. 
