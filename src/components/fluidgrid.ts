@@ -24,7 +24,7 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
                             [ngClass]='{active: _activeIndex == i, link: _config.IsClickable}' 
                             (mouseover)="FireHighlight(r, i)"
                             (click)="FireClick(r)">
-                            <template [ngTemplateOutlet]="templateRef"  [ngOutletContext]="{ item: GenerateRowTemplateModel(r) }" ></template>
+                            <template [ngTemplateOutlet]="templateRef"  [ngOutletContext]="{ item: { row : r, reduceToColumn : ReduceToColumn, visibleColumnIndexes : this._config.VisibleColumnIndexes } }" ></template>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="!templateRef">
@@ -200,30 +200,4 @@ export class FluidGridComponent   {
         return this._config.ItemsPerPage;
     }
 
-    /**
-     * Generates the template model for a row. 
-     * 
-     * @private
-     * @param {*} row - The row for which to generate the template model.
-     * @returns {{   
-     *             row: any, 
-     *             reduceToColumn: number
-     *             visibleColumnIndexes: Array<number>
-     *         }} 
-     * @method
-     * @private
-     * @memberof FluidGridComponent
-     */
-    private GenerateRowTemplateModel(row: any): 
-        {   
-            row: any, 
-            reduceToColumn: number
-            visibleColumnIndexes: Array<number>
-        } {
-        return {
-            row : row,
-            reduceToColumn : this.ReduceToColumn,
-            visibleColumnIndexes : this._config.VisibleColumnIndexes
-     };
-    }
 }
