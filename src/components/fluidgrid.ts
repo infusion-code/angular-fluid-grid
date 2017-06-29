@@ -24,7 +24,7 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
                             [ngClass]='{active: _activeIndex == i, link: _config.IsClickable}' 
                             (mouseover)="FireHighlight(r, i)"
                             (click)="FireClick(r)">
-                            <ng-template [ngTemplateOutlet]="templateRef"  [ngOutletContext]="{ item: GenerateRowTemplateModel(r) }" ></ng-template>
+                            <template [ngTemplateOutlet]="templateRef"  [ngOutletContext]="{ item: GenerateRowTemplateModel(r) }" ></template>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="!templateRef">
