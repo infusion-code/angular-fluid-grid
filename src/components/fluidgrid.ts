@@ -42,13 +42,13 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
                     </ng-container>
             </ng-container>              
         </div>
+    </div>     
     
-        <pagination-controls
-            id='{{PaginationId}}'
-            autoHide="true"
-            (pageChange)="p = $event">        
-        </pagination-controls>
-    </div>   
+    <pagination-controls
+        id='{{PaginationId}}'
+        autoHide="true"
+        (pageChange)="p = $event">        
+    </pagination-controls>
     `,
     styles: [ `
         .table-container {   position: absolute;   max-height: 100%;   overflow: auto;   width: 100%;   padding: 15px; }
