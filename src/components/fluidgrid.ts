@@ -7,7 +7,7 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
  * @class
  */
 @Component({
-    selector: 'fluild-grid',
+    selector: 'fluid-grid',
     template: `
       <div class="table-container" [ngStyle]="{'position': false ? 'absolute' : 'static'}">
         <div class="table" (mouseout)="FireHighlight(null)" >
@@ -86,8 +86,8 @@ export class FluidGridComponent   {
      * @memberof FluidGridComponent
      */
     private get ReduceToColumn(): number {
-        return this._config.ReduceTebleFromWidth && this._elementRef.nativeElement && this._elementRef.nativeElement.children.length &&
-            this._elementRef.nativeElement.children[0].offsetWidth < this._config.ReduceTebleFromWidth
+        return this._config.ReduceTableFromWidth && this._elementRef.nativeElement && this._elementRef.nativeElement.children.length &&
+            this._elementRef.nativeElement.children[0].offsetWidth < this._config.ReduceTableFromWidth
             ? this._config.ReducedSize : 10000;
     }
 

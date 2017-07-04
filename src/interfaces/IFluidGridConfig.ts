@@ -32,7 +32,7 @@ export interface IFluidGridConfig
      * @type {number}
      * @memberof IFluidGridConfig
      */
-    ReduceTebleFromWidth?: number;
+    ReduceTableFromWidth?: number;
     
     /**
      * Specifies the number of colums to show in reduced size.
