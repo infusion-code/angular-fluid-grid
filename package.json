@@ -1,6 +1,6 @@
 {
   "name": "angular-fluid-grid",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "This repository contains the source for the Angular Fluid Grid Package, a responsive, light weight fluid data grid for angular 2 and above.",
   "homepage": "https://github.com/infusion-code/angular-fluid-grid/wiki",
   "bugs": {
