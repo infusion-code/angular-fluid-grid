@@ -17,7 +17,7 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
                 </ng-container>               
             </div>
             <ng-container 
-                *ngFor="let r of (_config.Rows | paginate: { itemsPerPage: ItemsPerPage, currentPage: p, id : PaginationId });
+                *ngFor="let r of (_config.Rows | paginate: { itemsPerPage: ItemsPerPage, currentPage: _page , id : PaginationId });
                 let i=index">
                     <ng-container *ngIf="templateRef">
                         <div class="table-row-group " 
@@ -47,7 +47,7 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
     <pagination-controls
         id='{{PaginationId}}'
         autoHide="true"
-        (pageChange)="p = $event">        
+        (pageChange)="PageChange($event)">        
     </pagination-controls>
     `,
     styles: [ `
@@ -70,6 +70,7 @@ export class FluidGridComponent   {
     /// Field declarations
     ///
     private  _activeIndex: number = -1;
+    private  _page = 1;
     private _config: IFluidGridConfig;
     @ContentChild(TemplateRef) private templateRef: TemplateRef<any>;
 
@@ -132,6 +133,16 @@ export class FluidGridComponent   {
     @Output()
     public OnClick: EventEmitter<any> = new EventEmitter<any>();
 
+    /**
+     * Emits the number of the page if page changed
+     * @type {*}
+     * @public
+     * @event
+     * @memberof FluidGridComponent
+     */
+    @Output()
+    public OnPageChange: EventEmitter<number> = new EventEmitter<number>();
+
     ///
     /// Constructor
     ///
@@ -187,6 +198,18 @@ export class FluidGridComponent   {
      */
     private FireClick(item: any) {
         this.OnClick.emit(item);
+    }
+
+    /**
+     * Event delegate handling the page change
+     * @param {*} item - The clicked item.
+     * @private
+     * @method
+     * @memberof FluidGridComponent
+     */
+    private PageChange(page: number) {
+        this._page = page;
+        this.OnPageChange.emit(page);
     }
 
     private get PaginationId() : string {
