@@ -1,4 +1,4 @@
-import { Component, Input, ContentChild, TemplateRef,
+import { Component, Input, ContentChild, TemplateRef, ChangeDetectorRef, ChangeDetectionStrategy, 
      EventEmitter, Output, ElementRef } from '@angular/core';
 import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
 
@@ -7,6 +7,7 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
  * @class
  */
 @Component({
+    changeDetection : ChangeDetectionStrategy.OnPush,
     selector: 'fluid-grid',
     template: `
       <div class="table-container" [ngStyle]="{'position': false ? 'absolute' : 'static'}">
@@ -64,7 +65,7 @@ import { IFluidGridConfig } from '../interfaces/IFluidGridConfig';
         :host /deep/ .link {   cursor: pointer !Important; }
     `]
 })
-export class FluidGridComponent   {
+export class FluidGridComponent implements AfterViewInit   {
 
     ///
     /// Field declarations
@@ -153,11 +154,12 @@ export class FluidGridComponent   {
      * @constructor
      * @memberof FluidGridComponent
      */
-    constructor(private _elementRef: ElementRef) {}
+    constructor(private _elementRef: ElementRef, private _changeRef: ChangeDetectorRef) {
 
-    ///
-    /// Private methods
-    ///
+        setInterval(() => { this._changeRef.markForCheck();}, 1000);
+        
+        
+    }
 
     /**
      * Checks if a certain column should be rendered in the current display context.
